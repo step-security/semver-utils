@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import { diff as semVerDiff, parse, satisfies as semVerSatisfies, SemVer } from 'semver'
+import axios, { isAxiosError } from 'axios'
 
 function parts(version: SemVer): void {
   core.setOutput('release', `${version.major}.${version.minor}.${version.patch}`)
@@ -90,7 +91,23 @@ function satisfies(version: SemVer): void {
   }
 }
 
+function validateSubscription(): void {
+  const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`
+
+  try {
+    axios.get(API_URL, { timeout: 3000 })
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      core.error('Subscription is not valid. Reach out to support@stepsecurity.io')
+      process.exit(1)
+    } else {
+      core.info('Timeout or API not reachable. Continuing to next step.')
+    }
+  }
+}
+
 function run(): void {
+  validateSubscription()
   try {
     const lenient = core.getInput('lenient').toLowerCase() !== 'false'
     const versionInput = core.getInput('version', { required: true })
