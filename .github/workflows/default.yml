@@ -15,7 +15,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: npm install
       - run: npm run all
@@ -112,5 +112,5 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: krzema12/github-actions-typing@v1
