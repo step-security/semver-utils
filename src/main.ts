@@ -91,11 +91,11 @@ function satisfies(version: SemVer): void {
   }
 }
 
-function validateSubscription(): void {
+async function validateSubscription(): Promise<void> {
   const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`
 
   try {
-    axios.get(API_URL, { timeout: 3000 })
+    await axios.get(API_URL, { timeout: 3000 })
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       core.error('Subscription is not valid. Reach out to support@stepsecurity.io')
@@ -106,8 +106,8 @@ function validateSubscription(): void {
   }
 }
 
-function run(): void {
-  validateSubscription()
+async function run(): Promise<void> {
+  await validateSubscription()
   try {
     const lenient = core.getInput('lenient').toLowerCase() !== 'false'
     const versionInput = core.getInput('version', { required: true })

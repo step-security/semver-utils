@@ -29,6 +29,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const semver_1 = __nccwpck_require__(1383);
@@ -110,45 +119,49 @@ function satisfies(version) {
     }
 }
 function validateSubscription() {
-    const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`;
-    try {
-        axios_1.default.get(API_URL, { timeout: 3000 });
-    }
-    catch (error) {
-        if ((0, axios_1.isAxiosError)(error) && error.response) {
-            core.error('Subscription is not valid. Reach out to support@stepsecurity.io');
-            process.exit(1);
+    return __awaiter(this, void 0, void 0, function* () {
+        const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`;
+        try {
+            yield axios_1.default.get(API_URL, { timeout: 3000 });
         }
-        else {
-            core.info('Timeout or API not reachable. Continuing to next step.');
+        catch (error) {
+            if ((0, axios_1.isAxiosError)(error) && error.response) {
+                core.error('Subscription is not valid. Reach out to support@stepsecurity.io');
+                process.exit(1);
+            }
+            else {
+                core.info('Timeout or API not reachable. Continuing to next step.');
+            }
         }
-    }
+    });
 }
 function run() {
-    validateSubscription();
-    try {
-        const lenient = core.getInput('lenient').toLowerCase() !== 'false';
-        const versionInput = core.getInput('version', { required: true });
-        const version = (0, semver_1.parse)(versionInput);
-        if (version === null) {
-            if (!lenient) {
-                core.setFailed(`Invalid version: ${versionInput}`);
+    return __awaiter(this, void 0, void 0, function* () {
+        yield validateSubscription();
+        try {
+            const lenient = core.getInput('lenient').toLowerCase() !== 'false';
+            const versionInput = core.getInput('version', { required: true });
+            const version = (0, semver_1.parse)(versionInput);
+            if (version === null) {
+                if (!lenient) {
+                    core.setFailed(`Invalid version: ${versionInput}`);
+                }
+                return;
             }
-            return;
+            parts(version);
+            increments(versionInput);
+            build(version);
+            prerelease(version);
+            compare(version);
+            diff(version);
+            satisfies(version);
         }
-        parts(version);
-        increments(versionInput);
-        build(version);
-        prerelease(version);
-        compare(version);
-        diff(version);
-        satisfies(version);
-    }
-    catch (error) {
-        if (error instanceof Error) {
-            core.setFailed(error.message);
+        catch (error) {
+            if (error instanceof Error) {
+                core.setFailed(error.message);
+            }
         }
-    }
+    });
 }
 run();
 
