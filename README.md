@@ -65,7 +65,7 @@ Whenever a new version is released, corresponding tags are created / updated.
 `latest` tag always points to the latest release (i.e. it's the same as using `main` branch).
 There are also `$major` and `$major.$minor` tags pointing to the latest matching version (i.e. tag `1` always points to the latest `1.x` version, and tag `1.1` — to the latest `1.1.x` version).
 
-To learn more the inputs / outpus look at the comprehensive test suit: [`main.test.ts`](__tests__/main.test.ts).
+To learn more the inputs / outputs look at the comprehensive test suit: [`main.test.ts`](__tests__/main.test.ts).
 
 To see this action… in action check its integration test: [`default.yml`](.github/workflows/default.yml).
 
