@@ -32,13 +32,13 @@ outputs:
   build:
     description: Version's build
   build-parts:
-    description: Number of components in version's build. Individual сomponents are returned as `build-N` outputs, where an is an index from zero to `build-parts` - 1.
+    description: Number of components in version's build. Individual components are returned as `build-N` outputs, where an is an index from zero to `build-parts` - 1.
   prerelease:
     description: Version's pre-release
   prerelease-parts:
-    description: Number of components in version's pre-release. Individual сomponents are returned as `prerelease-N` outputs, where an is an index from zero to `prerelease-parts` - 1.
+    description: Number of components in version's pre-release. Individual components are returned as `prerelease-N` outputs, where an is an index from zero to `prerelease-parts` - 1.
   comparison-result:
-    description: If the compare-to was provided, this output will contain "<" if comes after the version, ">" if it preceeds it, and "=" if they are equal
+    description: If the compare-to was provided, this output will contain "<" if comes after the version, ">" if it precedes it, and "=" if they are equal
   diff-result:
     description: If the diff-to or compare-to were provided, this output will contain the diff result
   satisfies:
