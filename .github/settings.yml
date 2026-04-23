@@ -19,7 +19,7 @@ labels:
     description: Boring, unpleasant, but easy tasks
   - name: CI/CD
     color: '#95CD57'
-    description: Continious integration & delivery
+    description: Continuous integration & delivery
   - name: dependencies
     color: '#0366D6'
     description: Pull requests that update a dependency file
