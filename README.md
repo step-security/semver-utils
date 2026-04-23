@@ -1,3 +1,5 @@
+[![StepSecurity Maintained Action](https://raw.githubusercontent.com/step-security/maintained-actions-assets/main/assets/maintained-action-banner.png)](https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions)
+
 # StepSecurity Maintained semver-utils Action
 
 Forked from: [madhead/semver-utils](https://github.com/madhead/semver-utils)
