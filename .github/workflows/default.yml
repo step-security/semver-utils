@@ -113,4 +113,4 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: typesafegithub/github-actions-typing@21db25f90324def9328034891ea446b023b8ea77 # v1.0.6
+      - uses: typesafegithub/github-actions-typing@9ddf35b71a482be7d8922b28e8d00df16b77e315 # v2.2.2
