@@ -1,0 +1,18 @@
+{
+   "schema_version": "1",
+   "onboarding_type": "copied",
+   "archived": false,
+   "maintained_action_name": "step-security/semver-utils",
+   "upstream_full_repo_name": "madhead/semver-utils",
+   "action_type": "node",
+   "last_release": {
+     "tag_name": "v5.0.0",
+     "created_at": "2026-05-15T13:20:13Z",
+     "published_at": "2026-05-18T16:31:19Z"
+   },
+   "sync": {
+     "ignore_presets": [
+       "defaults_v1"
+     ]
+   }
+ }
