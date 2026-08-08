@@ -1,0 +1,37 @@
+name: PR to main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pr_main:
+    name: PR to main
+    runs-on: ubuntu-latest
+    if: ${{ github.event.sender.login != 'dependabot[bot]' }}
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+
+      - run: node -p "'version=' + require('./package.json').version" >> $GITHUB_OUTPUT
+        id: base-version
+
+      - uses: actions/checkout@v3
+
+      - run: node -p "'version=' + require('./package.json').version" >> $GITHUB_OUTPUT
+        id: new-version
+
+      - uses: step-security/semver-utils@v1
+        id: comparison
+        with:
+          version: ${{ steps.new-version.outputs.version }}
+          compare-to: ${{ steps.base-version.outputs.version }}
+
+      - run: '[[ ">" == "${{ steps.comparison.outputs.comparison-result }}" ]]'
