@@ -1,4 +1,5 @@
 name: semver-utils
+author: step-security
 description: One-stop shop for working with semantic versions in your workflows
 inputs:
   version:
