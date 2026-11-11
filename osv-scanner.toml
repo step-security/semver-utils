@@ -1,7 +1,11 @@
 [[IgnoredVulns]]
-id = "GHSA-8hc4-vh64-cxmj"
-reason = "Axios URL is not user-controlled"
+id = "GHSA-gcqx-w48m-w2h4"
+reason = "deepmerge is a jest-config dev dependency, not bundled in dist. No fix released upstream."
 
 [[IgnoredVulns]]
-id = "GHSA-952p-6rrq-rcjv"
-reason = "It is a test dependency"
+id = "GHSA-3g3m-2fjr-6pw4"
+reason = "glob (10.x and 13.x) pulled in by jest and test-exclude dev deps, not bundled in dist. Fix requires glob@14 which jest@30 has not adopted yet."
+
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+reason = "minimatch (9.x and 10.x) pulled in by glob@10, @typescript-eslint and eslint dev deps, not bundled in dist. Fix requires minimatch@11 which upstream packages have not adopted yet."
