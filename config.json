@@ -5,8 +5,8 @@
   "action_type": "node",
   "upstream": {
     "repository": "madhead/semver-utils",
-    "synced_tag": "v5.1.1",
-    "synced_commit": "092ff2bc46cae343afb90c5efbd606411fc45b49",
+    "synced_tag": "v5.1.2",
+    "synced_commit": "b1422b43403574ed9de5b73bc37b3a33fa63ba48",
     "archived": false
   },
   "build": {
