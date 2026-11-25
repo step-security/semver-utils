@@ -10,7 +10,7 @@ A wrapper around [semver](https://www.npmjs.com/package/semver), so read [its do
 ## Usage
 
 ```yml
-- uses: step-security/semver-utils@v4
+- uses: step-security/semver-utils@v5
   id: version
   with:
     # A version to work with
@@ -45,14 +45,14 @@ If the version cannot be parsed, all the outputs [will be equal to an empty stri
 If `lenient` is `false`, the action [will fail](.github/workflows/default.yml#L18-L25).
 
 ```yml
-- uses: step-security/semver-utils@v4
+- uses: step-security/semver-utils@v5
   id: lenient
   with:
     version: invalid
 - run: |
     echo "${{ steps.lenient.outputs.release }}"           # (empty string)
 
-- uses: step-security/semver-utils@v4
+- uses: step-security/semver-utils@v5
   id: strict
   with:
     version: invalid
